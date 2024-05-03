@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     const {todo} = await request.json();
     const {data, error} = await supabase.from("ToDos").insert({todo}).select();
     if(error) {
-        console.error(`error`);
+        console.error(`${error}`);
         return NextResponse.json({status: 500, error})
     }
     return NextResponse.json({data});
