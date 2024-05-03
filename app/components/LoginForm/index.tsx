@@ -10,7 +10,8 @@ function LoginForm () {
 
     const router = useRouter()
 
-    const submit = async () => {
+    const submit = async (evt: any) => {
+        evt.preventDefault();
         const {data} = await axios.post(`${location.origin}/api/login`, {email: email, password: password});
         if (data) {
             setEmail("")
@@ -20,7 +21,7 @@ function LoginForm () {
     }
 
     return (
-        <form className="space-y-6" onSubmit={()=> submit()}>
+        <form className="space-y-6" onSubmit={(evt)=> submit(evt)}>
             <FormInput labelName="Email Adress" htmlFor = "email" name="email" type="email" onChange={setEmail} value={email} />
             <FormInput labelName="Password" htmlFor="password" name="password" type="password" onChange={setPassword} value={password}/>
             <div>

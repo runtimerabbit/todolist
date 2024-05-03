@@ -1,9 +1,11 @@
 "use client"
 import { useState } from "react"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 const ToDoInput = () => {
   const [task,setTask]=useState("")
+  const router = useRouter()
   async function new_todo() {
     if (task === "") {
       return
@@ -14,8 +16,10 @@ const ToDoInput = () => {
     }
 
     else {
-      console.info(response);
+      // console.info(response);
       setTask("")
+      router.refresh()
+
     }
   }
     return (
