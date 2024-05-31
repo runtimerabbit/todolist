@@ -4,7 +4,7 @@ import { FormInput } from ".."
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-function LoginForm () {
+function SignUpForm () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -12,14 +12,12 @@ function LoginForm () {
 
     const submit = async (evt: any) => {
         evt.preventDefault();
-        const {data} = await axios.post(`${location.origin}/api/login`, {email: email, password: password});
+        const {data} = await axios.post(`${location.origin}/api/signup`, {email: email, password: password});
         if (data) {
             setEmail("")
             setPassword("")
-
-            
+            router.replace("/")
         }
-
     }
 
     return (
@@ -33,4 +31,4 @@ function LoginForm () {
     )
 }
 
-export { LoginForm };
+export { SignUpForm };
